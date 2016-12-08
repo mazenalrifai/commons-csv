@@ -217,7 +217,7 @@ public class CSVParserTest {
         parser.close();
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test(expected = NoSuchElementException.class, timeout = 1000)
     public void testClose() throws Exception {
         final Reader in = new StringReader("# comment\na,b,c\n1,2,3\nx,y,z");
         final CSVParser parser = CSVFormat.DEFAULT.withCommentMarker('#').withHeader().parse(in);
@@ -453,7 +453,7 @@ public class CSVParserTest {
         parser.close();
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class, timeout = 1000)
     public void testDuplicateHeaders() throws Exception {
         CSVParser.parse("a,b,a\n1,2,3\nx,y,z", CSVFormat.DEFAULT.withHeader(new String[] {}));
     }
@@ -612,7 +612,7 @@ public class CSVParserTest {
         assertFalse(records.hasNext());
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class, timeout = 1000)
     public void testHeadersMissingException() throws Exception {
         final Reader in = new StringReader("a,,c,,d\n1,2,3,4\nx,y,z,zz");
         CSVFormat.DEFAULT.withHeader().parse(in).iterator();
@@ -658,7 +658,7 @@ public class CSVParserTest {
         parser.close();
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class, timeout = 1000)
     public void testInvalidFormat() throws Exception {
         final CSVFormat invalidFormat = CSVFormat.DEFAULT.withDelimiter(CR);
         new CSVParser(null, invalidFormat).close();
@@ -757,12 +757,12 @@ public class CSVParserTest {
         parser.close();
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class, timeout = 1000)
     public void testNewCSVParserNullReaderFormat() throws Exception {
         new CSVParser(null, CSVFormat.DEFAULT).close();
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class, timeout = 1000)
     public void testNewCSVParserReaderNullFormat() throws Exception {
         new CSVParser(new StringReader(""), null).close();
     }
@@ -774,38 +774,38 @@ public class CSVParserTest {
         parser.close();
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class, timeout = 1000)
     public void testParseFileNullFormat() throws Exception {
         CSVParser.parse(new File(""), Charset.defaultCharset(), null);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class, timeout = 1000)
     public void testParseNullFileFormat() throws Exception {
         CSVParser.parse((File) null, Charset.defaultCharset(), CSVFormat.DEFAULT);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class, timeout = 1000)
     public void testParseNullStringFormat() throws Exception {
         CSVParser.parse((String) null, CSVFormat.DEFAULT);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class, timeout = 1000)
     public void testParseNullUrlCharsetFormat() throws Exception {
         CSVParser.parse((File) null, Charset.defaultCharset(), CSVFormat.DEFAULT);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class, timeout = 1000)
     public void testParserUrlNullCharsetFormat() throws Exception {
         final CSVParser parser = CSVParser.parse(new URL("http://commons.apache.org"), null, CSVFormat.DEFAULT);
         parser.close();
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class, timeout = 1000)
     public void testParseStringNullFormat() throws Exception {
         CSVParser.parse("csv data", null);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class, timeout = 1000)
     public void testParseUrlCharsetNullFormat() throws Exception {
         final CSVParser parser = CSVParser.parse(new URL("http://commons.apache.org"), Charset.defaultCharset(), null);
         parser.close();
