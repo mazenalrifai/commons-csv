@@ -50,7 +50,7 @@ public class CSVRecordTest {
     private CSVRecord record, recordWithHeader;
     private Map<String, Integer> header;
 
-    @Before(timeout = 1000)
+    @Before
     public void setUp() throws Exception {
         values = new String[] { "A", "B", "C" };
         record = new CSVRecord(values, null, null, 0, -1);
