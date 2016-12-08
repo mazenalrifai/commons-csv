@@ -37,6 +37,14 @@ import java.util.Random;
 
 import org.junit.Test;
 
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.Rule;
+import org.junit.rules.Timeout;
+import java.util.concurrent.TimeUnit;
+import org.junit.Ignore;
+
 /**
  *
  *
@@ -148,7 +156,7 @@ public class CSVPrinterTest {
         return new String(buf);
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testDisabledComment() throws IOException {
         final StringWriter sw = new StringWriter();
         final CSVPrinter printer = new CSVPrinter(sw, CSVFormat.DEFAULT);
@@ -158,7 +166,7 @@ public class CSVPrinterTest {
         printer.close();
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testExcelPrintAllArrayOfArrays() throws IOException {
         final StringWriter sw = new StringWriter();
         final CSVPrinter printer = new CSVPrinter(sw, CSVFormat.EXCEL);
@@ -167,7 +175,7 @@ public class CSVPrinterTest {
         printer.close();
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testExcelPrintAllArrayOfLists() throws IOException {
         final StringWriter sw = new StringWriter();
         final CSVPrinter printer = new CSVPrinter(sw, CSVFormat.EXCEL);
@@ -176,7 +184,7 @@ public class CSVPrinterTest {
         printer.close();
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testExcelPrintAllIterableOfArrays() throws IOException {
         final StringWriter sw = new StringWriter();
         final CSVPrinter printer = new CSVPrinter(sw, CSVFormat.EXCEL);
@@ -185,7 +193,7 @@ public class CSVPrinterTest {
         printer.close();
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testExcelPrintAllIterableOfLists() throws IOException {
         final StringWriter sw = new StringWriter();
         final CSVPrinter printer = new CSVPrinter(sw, CSVFormat.EXCEL);
@@ -195,7 +203,7 @@ public class CSVPrinterTest {
         printer.close();
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testExcelPrinter1() throws IOException {
         final StringWriter sw = new StringWriter();
         final CSVPrinter printer = new CSVPrinter(sw, CSVFormat.EXCEL);
@@ -204,7 +212,7 @@ public class CSVPrinterTest {
         printer.close();
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testExcelPrinter2() throws IOException {
         final StringWriter sw = new StringWriter();
         final CSVPrinter printer = new CSVPrinter(sw, CSVFormat.EXCEL);
@@ -218,7 +226,7 @@ public class CSVPrinterTest {
         return DriverManager.getConnection("jdbc:h2:mem:my_test;", "sa", "");
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testJdbcPrinter() throws IOException, ClassNotFoundException, SQLException {
         final StringWriter sw = new StringWriter();
         final Connection connection = geH2Connection();
@@ -234,7 +242,7 @@ public class CSVPrinterTest {
         }
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testJdbcPrinterWithResultSet() throws IOException, ClassNotFoundException, SQLException {
         final StringWriter sw = new StringWriter();
         Class.forName("org.h2.Driver");
@@ -257,7 +265,7 @@ public class CSVPrinterTest {
         }
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testJdbcPrinterWithResultSetMetaData() throws IOException, ClassNotFoundException, SQLException {
         final StringWriter sw = new StringWriter();
         Class.forName("org.h2.Driver");
@@ -291,7 +299,7 @@ public class CSVPrinterTest {
         }
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testMultiLineComment() throws IOException {
         final StringWriter sw = new StringWriter();
         final CSVPrinter printer = new CSVPrinter(sw, CSVFormat.DEFAULT.withCommentMarker('#'));
@@ -301,7 +309,7 @@ public class CSVPrinterTest {
         printer.close();
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testPrinter1() throws IOException {
         final StringWriter sw = new StringWriter();
         final CSVPrinter printer = new CSVPrinter(sw, CSVFormat.DEFAULT);
@@ -310,7 +318,7 @@ public class CSVPrinterTest {
         printer.close();
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testPrinter2() throws IOException {
         final StringWriter sw = new StringWriter();
         final CSVPrinter printer = new CSVPrinter(sw, CSVFormat.DEFAULT);
@@ -319,7 +327,7 @@ public class CSVPrinterTest {
         printer.close();
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testPrinter3() throws IOException {
         final StringWriter sw = new StringWriter();
         final CSVPrinter printer = new CSVPrinter(sw, CSVFormat.DEFAULT);
@@ -328,7 +336,7 @@ public class CSVPrinterTest {
         printer.close();
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testPrinter4() throws IOException {
         final StringWriter sw = new StringWriter();
         final CSVPrinter printer = new CSVPrinter(sw, CSVFormat.DEFAULT);
@@ -337,7 +345,7 @@ public class CSVPrinterTest {
         printer.close();
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testPrinter5() throws IOException {
         final StringWriter sw = new StringWriter();
         final CSVPrinter printer = new CSVPrinter(sw, CSVFormat.DEFAULT);
@@ -346,7 +354,7 @@ public class CSVPrinterTest {
         printer.close();
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testPrinter6() throws IOException {
         final StringWriter sw = new StringWriter();
         final CSVPrinter printer = new CSVPrinter(sw, CSVFormat.DEFAULT);
@@ -355,7 +363,7 @@ public class CSVPrinterTest {
         printer.close();
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testPrinter7() throws IOException {
         final StringWriter sw = new StringWriter();
         final CSVPrinter printer = new CSVPrinter(sw, CSVFormat.DEFAULT);
@@ -364,7 +372,7 @@ public class CSVPrinterTest {
         printer.close();
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testPrint() throws IOException {
         final StringWriter sw = new StringWriter();
         final CSVPrinter printer = CSVFormat.DEFAULT.print(sw);
@@ -373,7 +381,7 @@ public class CSVPrinterTest {
         printer.close();
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testPrintNullValues() throws IOException {
         final StringWriter sw = new StringWriter();
         final CSVPrinter printer = new CSVPrinter(sw, CSVFormat.DEFAULT);
@@ -382,7 +390,7 @@ public class CSVPrinterTest {
         printer.close();
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testPrintCustomNullValues() throws IOException {
         final StringWriter sw = new StringWriter();
         final CSVPrinter printer = new CSVPrinter(sw, CSVFormat.DEFAULT.withNullString("NULL"));
@@ -391,7 +399,7 @@ public class CSVPrinterTest {
         printer.close();
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testParseCustomNullValues() throws IOException {
         final StringWriter sw = new StringWriter();
         final CSVFormat format = CSVFormat.DEFAULT.withNullString("NULL");
@@ -410,7 +418,7 @@ public class CSVPrinterTest {
         ((CSVParser) iterable).close();
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testQuoteAll() throws IOException {
         final StringWriter sw = new StringWriter();
         final CSVPrinter printer = new CSVPrinter(sw, CSVFormat.DEFAULT.withQuoteMode(QuoteMode.ALL));
@@ -419,7 +427,7 @@ public class CSVPrinterTest {
         printer.close();
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testQuoteNonNumeric() throws IOException {
         final StringWriter sw = new StringWriter();
         final CSVPrinter printer = new CSVPrinter(sw, CSVFormat.DEFAULT.withQuoteMode(QuoteMode.NON_NUMERIC));
@@ -428,7 +436,7 @@ public class CSVPrinterTest {
         printer.close();
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testRandom() throws Exception {
         final int iter = 10000;
         doRandom(CSVFormat.DEFAULT, iter);
@@ -436,7 +444,7 @@ public class CSVPrinterTest {
         doRandom(CSVFormat.MYSQL, iter);
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testPlainQuoted() throws IOException {
         final StringWriter sw = new StringWriter();
         final CSVPrinter printer = new CSVPrinter(sw, CSVFormat.DEFAULT.withQuote('\''));
@@ -445,7 +453,7 @@ public class CSVPrinterTest {
         printer.close();
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testSingleLineComment() throws IOException {
         final StringWriter sw = new StringWriter();
         final CSVPrinter printer = new CSVPrinter(sw, CSVFormat.DEFAULT.withCommentMarker('#'));
@@ -455,7 +463,7 @@ public class CSVPrinterTest {
         printer.close();
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testSingleQuoteQuoted() throws IOException {
         final StringWriter sw = new StringWriter();
         final CSVPrinter printer = new CSVPrinter(sw, CSVFormat.DEFAULT.withQuote('\''));
@@ -465,7 +473,7 @@ public class CSVPrinterTest {
         printer.close();
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testDelimeterQuoted() throws IOException {
         final StringWriter sw = new StringWriter();
         final CSVPrinter printer = new CSVPrinter(sw, CSVFormat.DEFAULT.withQuote('\''));
@@ -475,7 +483,7 @@ public class CSVPrinterTest {
         printer.close();
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testDelimeterQuoteNONE() throws IOException {
         final StringWriter sw = new StringWriter();
         final CSVFormat format = CSVFormat.DEFAULT.withEscape('!').withQuoteMode(QuoteMode.NONE);
@@ -486,7 +494,7 @@ public class CSVPrinterTest {
         printer.close();
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testEOLQuoted() throws IOException {
         final StringWriter sw = new StringWriter();
         final CSVPrinter printer = new CSVPrinter(sw, CSVFormat.DEFAULT.withQuote('\''));
@@ -496,7 +504,7 @@ public class CSVPrinterTest {
         printer.close();
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testPlainEscaped() throws IOException {
         final StringWriter sw = new StringWriter();
         final CSVPrinter printer = new CSVPrinter(sw, CSVFormat.DEFAULT.withQuote(null).withEscape('!'));
@@ -506,7 +514,7 @@ public class CSVPrinterTest {
         printer.close();
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testDelimiterEscaped() throws IOException {
         final StringWriter sw = new StringWriter();
         final CSVPrinter printer = new CSVPrinter(sw, CSVFormat.DEFAULT.withEscape('!').withQuote(null));
@@ -516,7 +524,7 @@ public class CSVPrinterTest {
         printer.close();
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testEOLEscaped() throws IOException {
         final StringWriter sw = new StringWriter();
         final CSVPrinter printer = new CSVPrinter(sw, CSVFormat.DEFAULT.withQuote(null).withEscape('!'));
@@ -526,7 +534,7 @@ public class CSVPrinterTest {
         printer.close();
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testPlainPlain() throws IOException {
         final StringWriter sw = new StringWriter();
         final CSVPrinter printer = new CSVPrinter(sw, CSVFormat.DEFAULT.withQuote(null));
@@ -536,7 +544,7 @@ public class CSVPrinterTest {
         printer.close();
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testDelimiterPlain() throws IOException {
         final StringWriter sw = new StringWriter();
         final CSVPrinter printer = new CSVPrinter(sw, CSVFormat.DEFAULT.withQuote(null));
@@ -546,7 +554,7 @@ public class CSVPrinterTest {
         printer.close();
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testHeader() throws IOException {
         final StringWriter sw = new StringWriter();
         final CSVPrinter printer = new CSVPrinter(sw, CSVFormat.DEFAULT.withQuote(null)
@@ -557,7 +565,7 @@ public class CSVPrinterTest {
         printer.close();
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testHeaderNotSet() throws IOException {
         final StringWriter sw = new StringWriter();
         final CSVPrinter printer = new CSVPrinter(sw, CSVFormat.DEFAULT.withQuote(null));
@@ -567,7 +575,7 @@ public class CSVPrinterTest {
         printer.close();
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testSkipHeaderRecordTrue() throws IOException {
     	// functionally identical to testHeaderNotSet, used to test CSV-153
         final StringWriter sw = new StringWriter();
@@ -579,7 +587,7 @@ public class CSVPrinterTest {
         printer.close();
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testSkipHeaderRecordFalse() throws IOException {
     	// functionally identical to testHeader, used to test CSV-153
         final StringWriter sw = new StringWriter();
@@ -591,7 +599,7 @@ public class CSVPrinterTest {
         printer.close();
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testHeaderCommentExcel() throws IOException {
         final StringWriter sw = new StringWriter();
         final Date now = new Date();
@@ -601,7 +609,7 @@ public class CSVPrinterTest {
         csvPrinter.close();
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testHeaderCommentTdf() throws IOException {
         final StringWriter sw = new StringWriter();
         final Date now = new Date();
@@ -625,7 +633,7 @@ public class CSVPrinterTest {
         return csvPrinter;
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testEOLPlain() throws IOException {
         final StringWriter sw = new StringWriter();
         final CSVPrinter printer = new CSVPrinter(sw, CSVFormat.DEFAULT.withQuote(null));
@@ -635,18 +643,18 @@ public class CSVPrinterTest {
         printer.close();
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class, timeout = 1000)
     public void testInvalidFormat() throws Exception {
         final CSVFormat invalidFormat = CSVFormat.DEFAULT.withDelimiter(CR);
         new CSVPrinter(new StringWriter(), invalidFormat).close();
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class, timeout = 1000)
     public void testNewCSVPrinterNullAppendableFormat() throws Exception {
         new CSVPrinter(null, CSVFormat.DEFAULT).close();
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class, timeout = 1000)
     public void testNewCsvPrinterAppendableNullFormat() throws Exception {
         new CSVPrinter(new StringWriter(), null).close();
     }
