@@ -40,6 +40,15 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.Rule;
+import org.junit.rules.Timeout;
+import java.util.concurrent.TimeUnit;
+import org.junit.Ignore;
+import org.junit.rules.Timeout;
+
 /**
  * Parse tests using test files
  *
@@ -54,6 +63,10 @@ public class CSVFileParserTest {
 
     private final String testName;
 
+    @Rule
+    public Timeout globalTimeout = Timeout.seconds(10); // 10 seconds max per method tested
+
+    @Before
     public CSVFileParserTest(final File file) throws FileNotFoundException {
         this.testName = file.getName();
         this.testData = new BufferedReader(new FileReader(file));
@@ -87,7 +100,7 @@ public class CSVFileParserTest {
         return list;
     }
 
-    @Test
+    @Test(timeout=5000)
     public void testCSVFile() throws Exception {
         String line = readTestData();
         assertNotNull("file must contain config line", line);
@@ -131,7 +144,7 @@ public class CSVFileParserTest {
         parser.close();
     }
 
-    @Test
+    @Test(timeout=5000)
     public void testCSVUrl() throws Exception {
         String line = readTestData();
         assertNotNull("file must contain config line", line);
