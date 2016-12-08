@@ -51,6 +51,9 @@ import org.junit.Ignore;
  * @version $Id$
  */
 public class CSVPrinterTest {
+    
+    @Rule
+    public Timeout globalTimeout = Timeout.seconds(10); // 10 seconds max per method tested
 
     private final String recordSeparator = CSVFormat.DEFAULT.getRecordSeparator();
 
@@ -67,7 +70,7 @@ public class CSVPrinterTest {
         return sb.toString();
     }
 
-    @Before(timeout = 1000)
+    @Before
     private void doOneRandom(final CSVFormat format) throws Exception {
         final Random r = new Random();
 
@@ -102,7 +105,8 @@ public class CSVPrinterTest {
         Utils.compare("Printer output :" + printable(result), lines, parseResult);
         parser.close();
     }
-
+    
+    @Before
     private void doRandom(final CSVFormat format, final int iter) throws Exception {
         for (int i = 0; i < iter; i++) {
             doOneRandom(format);
@@ -290,7 +294,7 @@ public class CSVPrinterTest {
         }
     }
 
-    @Before(timeout = 1000)
+    @Before
     private void setUpTable(final Connection connection) throws SQLException {
         final Statement statement = connection.createStatement();
         try {
