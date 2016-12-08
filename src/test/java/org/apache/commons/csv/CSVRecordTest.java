@@ -34,6 +34,12 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.Timeout;
+
+import java.util.concurrent.TimeUnit;
+
 public class CSVRecordTest {
 
     private enum EnumFixture { UNKNOWN_COLUMN }
@@ -42,7 +48,7 @@ public class CSVRecordTest {
     private CSVRecord record, recordWithHeader;
     private Map<String, Integer> header;
 
-    @Before
+    @Before(timeout = 1000)
     public void setUp() throws Exception {
         values = new String[] { "A", "B", "C" };
         record = new CSVRecord(values, null, null, 0, -1);
@@ -53,14 +59,14 @@ public class CSVRecordTest {
         recordWithHeader = new CSVRecord(values, header, null, 0, -1);
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testGetInt() {
         assertEquals(values[0], record.get(0));
         assertEquals(values[1], record.get(1));
         assertEquals(values[2], record.get(2));
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testGetString() {
         assertEquals(values[0], recordWithHeader.get("first"));
         assertEquals(values[1], recordWithHeader.get("second"));
@@ -98,7 +104,7 @@ public class CSVRecordTest {
         assertNull(recordWithHeader.get(Integer.MAX_VALUE));
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testIsConsistent() {
         assertTrue(record.isConsistent());
         assertTrue(recordWithHeader.isConsistent());
@@ -107,21 +113,21 @@ public class CSVRecordTest {
         assertFalse(recordWithHeader.isConsistent());
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testIsMapped() {
         assertFalse(record.isMapped("first"));
         assertTrue(recordWithHeader.isMapped("first"));
         assertFalse(recordWithHeader.isMapped("fourth"));
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testIsSet() {
         assertFalse(record.isSet("first"));
         assertTrue(recordWithHeader.isSet("first"));
         assertFalse(recordWithHeader.isSet("fourth"));
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testIterator() {
         int i = 0;
         for (final String value : record) {
@@ -130,7 +136,7 @@ public class CSVRecordTest {
         }
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testPutInMap() {
         final Map<String, String> map = new ConcurrentHashMap<String, String>();
         this.recordWithHeader.putIn(map);
@@ -140,7 +146,7 @@ public class CSVRecordTest {
         this.validateMap(map2, false);
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testRemoveAndAddColumns() throws IOException {
         // do:
         final CSVPrinter printer = new CSVPrinter(new StringBuilder(), CSVFormat.DEFAULT);
@@ -155,20 +161,20 @@ public class CSVRecordTest {
         printer.close();
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testToMap() {
         final Map<String, String> map = this.recordWithHeader.toMap();
         this.validateMap(map, true);
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testToMapWithShortRecord() throws Exception {
        final CSVParser parser =  CSVParser.parse("a,b", CSVFormat.DEFAULT.withHeader("A", "B", "C"));
        final CSVRecord shortRec = parser.iterator().next();
        shortRec.toMap();
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testToMapWithNoHeader() throws Exception {
        final CSVParser parser =  CSVParser.parse("a,b", CSVFormat.newFormat(','));
        final CSVRecord shortRec = parser.iterator().next();
