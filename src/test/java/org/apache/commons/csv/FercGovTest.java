@@ -24,6 +24,14 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.Rule;
+import org.junit.rules.Timeout;
+import java.util.concurrent.TimeUnit;
+import org.junit.Ignore;
+
 /**
  * Real world examples from http://www.ferc.gov/docs-filing/eqr/soft-tools/sample-csv.asp
  */
@@ -41,7 +49,7 @@ public class FercGovTest {
 
     private static final Charset US_ASCII = Charset.forName("US-ASCII");
 
-    @Test
+    @Test(timeout = 1000)
     public void testContractFile() throws IOException {
         final URL contractData = ClassLoader.getSystemClassLoader().getResource("ferc.gov/contract.txt");
         final CSVParser parser = CSVParser.parse(contractData, US_ASCII, CSVFormat.DEFAULT.withHeader());
@@ -64,7 +72,7 @@ public class FercGovTest {
         }
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testTransactionFile() throws IOException {
         final URL transactionData = ClassLoader.getSystemClassLoader().getResource("ferc.gov/transaction.txt");
         final CSVParser parser = CSVParser.parse(transactionData, US_ASCII,
