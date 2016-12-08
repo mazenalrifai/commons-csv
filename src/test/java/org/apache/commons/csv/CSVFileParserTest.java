@@ -66,7 +66,6 @@ public class CSVFileParserTest {
     @Rule
     public Timeout globalTimeout = Timeout.seconds(10); // 10 seconds max per method tested
 
-    @Before
     public CSVFileParserTest(final File file) throws FileNotFoundException {
         this.testName = file.getName();
         this.testData = new BufferedReader(new FileReader(file));
