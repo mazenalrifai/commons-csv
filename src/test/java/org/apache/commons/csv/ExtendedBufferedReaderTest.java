@@ -27,6 +27,14 @@ import java.io.StringReader;
 
 import org.junit.Test;
 
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.Rule;
+import org.junit.rules.Timeout;
+import java.util.concurrent.TimeUnit;
+import org.junit.Ignore;
+
 /**
  *
  *
@@ -34,7 +42,7 @@ import org.junit.Test;
  */
 public class ExtendedBufferedReaderTest {
 
-    @Test
+    @Test(timeout = 1000)
     public void testEmptyInput() throws Exception {
         final ExtendedBufferedReader br = getBufferedReader("");
         assertEquals(END_OF_STREAM, br.read());
@@ -45,7 +53,7 @@ public class ExtendedBufferedReaderTest {
         br.close();
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testReadLookahead1() throws Exception {
         final ExtendedBufferedReader br = getBufferedReader("1\n2\r3\n");
         assertEquals(0, br.getCurrentLineNumber());
@@ -104,7 +112,7 @@ public class ExtendedBufferedReaderTest {
         br.close();
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testReadLookahead2() throws Exception {
         final char[] ref = new char[5];
         final char[] res = new char[5];
@@ -125,7 +133,7 @@ public class ExtendedBufferedReaderTest {
         br.close();
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testReadLine() throws Exception {
         ExtendedBufferedReader br = getBufferedReader("");
         assertNull(br.readLine());
@@ -177,7 +185,7 @@ public class ExtendedBufferedReaderTest {
      * Test to illustrate  https://issues.apache.org/jira/browse/CSV-75
      *
      */
-    @Test
+    @Test(timeout = 1000)
     public void testReadChar() throws Exception {
         final String LF="\n"; final String CR="\r"; final String CRLF=CR+LF; final String LFCR=LF+CR;// easier to read the string below
         final String test="a" + LF + "b" + CR + "c" + LF + LF + "d" + CR + CR + "e" + LFCR + "f "+ CRLF;
