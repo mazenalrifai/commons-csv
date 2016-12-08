@@ -627,7 +627,7 @@ public class CSVPrinterTest {
         csvPrinter.close();
     }
 
-    @Before(timeout = 1000)
+    @Before
     private CSVPrinter printWithHeaderComments(final StringWriter sw, final Date now, final CSVFormat baseFormat)
             throws IOException {
         CSVFormat format = baseFormat;
