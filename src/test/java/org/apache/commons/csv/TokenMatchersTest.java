@@ -26,6 +26,14 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.Rule;
+import org.junit.rules.Timeout;
+import java.util.concurrent.TimeUnit;
+import org.junit.Ignore;
+
 public class TokenMatchersTest {
 
     private Token token;
@@ -38,7 +46,7 @@ public class TokenMatchersTest {
         token.content.append("content");
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testHasType() {
         assertFalse(hasType(Token.Type.COMMENT).matches(token));
         assertFalse(hasType(Token.Type.EOF).matches(token));
@@ -46,20 +54,20 @@ public class TokenMatchersTest {
         assertTrue(hasType(Token.Type.TOKEN).matches(token));
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testHasContent() {
         assertFalse(hasContent("This is not the token's content").matches(token));
         assertTrue(hasContent("content").matches(token));
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testIsReady() {
         assertTrue(isReady().matches(token));
         token.isReady = false;
         assertFalse(isReady().matches(token));
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testMatches() {
         assertTrue(matches(Token.Type.TOKEN, "content").matches(token));
         assertFalse(matches(Token.Type.EOF, "content").matches(token));
