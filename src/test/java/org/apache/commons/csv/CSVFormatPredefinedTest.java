@@ -20,6 +20,14 @@ package org.apache.commons.csv;
 import org.junit.Assert;
 import org.junit.Test;
 
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.Rule;
+import org.junit.rules.Timeout;
+import java.util.concurrent.TimeUnit;
+import org.junit.Ignore;
+
 /**
  * Tests {@link CSVFormat.Predefined}.
  */
@@ -30,27 +38,27 @@ public class CSVFormatPredefinedTest {
         Assert.assertEquals(format, CSVFormat.valueOf(enumName));
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testDefault() {
         test(CSVFormat.DEFAULT, "Default");
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testExcel() {
         test(CSVFormat.EXCEL, "Excel");
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testMySQL() {
         test(CSVFormat.MYSQL, "MySQL");
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testRFC4180() {
         test(CSVFormat.RFC4180, "RFC4180");
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testTDF() {
         test(CSVFormat.TDF, "TDF");
     }
