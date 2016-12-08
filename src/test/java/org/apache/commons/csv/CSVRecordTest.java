@@ -39,6 +39,8 @@ import org.junit.Test;
 import org.junit.rules.Timeout;
 
 import java.util.concurrent.TimeUnit;
+import org.junit.Ignore;
+import static org.junit.Assert.assertEquals;
 
 public class CSVRecordTest {
 
