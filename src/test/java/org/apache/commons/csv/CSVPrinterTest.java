@@ -227,7 +227,7 @@ public class CSVPrinterTest {
         printer.close();
     }
 
-    @Before(timeout = 1000)
+    @Before
     private Connection geH2Connection() throws SQLException, ClassNotFoundException {
         Class.forName("org.h2.Driver");
         return DriverManager.getConnection("jdbc:h2:mem:my_test;", "sa", "");
