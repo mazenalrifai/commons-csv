@@ -55,11 +55,15 @@ public class LexerTest {
 
     private CSVFormat formatWithEscaping;
 
+    @Rule
+    public Timeout globalTimeout = Timeout.seconds(10); // 10 seconds max per method tested
+
     @Before
     public void setUp() {
         formatWithEscaping = CSVFormat.DEFAULT.withEscape('\\');
     }
 
+    @Before
     private Lexer getLexer(final String input, final CSVFormat format) {
         return new Lexer(format, new ExtendedBufferedReader(new StringReader(input)));
     }
