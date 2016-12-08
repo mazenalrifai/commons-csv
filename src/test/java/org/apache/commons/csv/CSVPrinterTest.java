@@ -44,6 +44,7 @@ import org.junit.Rule;
 import org.junit.rules.Timeout;
 import java.util.concurrent.TimeUnit;
 import org.junit.Ignore;
+import org.junit.rules.Timeout;
 
 /**
  *
