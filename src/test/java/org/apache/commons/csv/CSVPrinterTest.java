@@ -67,6 +67,7 @@ public class CSVPrinterTest {
         return sb.toString();
     }
 
+    @Before(timeout = 1000)
     private void doOneRandom(final CSVFormat format) throws Exception {
         final Random r = new Random();
 
@@ -221,6 +222,7 @@ public class CSVPrinterTest {
         printer.close();
     }
 
+    @Before(timeout = 1000)
     private Connection geH2Connection() throws SQLException, ClassNotFoundException {
         Class.forName("org.h2.Driver");
         return DriverManager.getConnection("jdbc:h2:mem:my_test;", "sa", "");
@@ -288,6 +290,7 @@ public class CSVPrinterTest {
         }
     }
 
+    @Before(timeout = 1000)
     private void setUpTable(final Connection connection) throws SQLException {
         final Statement statement = connection.createStatement();
         try {
@@ -619,6 +622,7 @@ public class CSVPrinterTest {
         csvPrinter.close();
     }
 
+    @Before(timeout = 1000)
     private CSVPrinter printWithHeaderComments(final StringWriter sw, final Date now, final CSVFormat baseFormat)
             throws IOException {
         CSVFormat format = baseFormat;
